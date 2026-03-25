@@ -1,0 +1,83 @@
+/* City Rox Master Design */
+:root {
+    --bg: #080808;
+    --card: #121212;
+    --accent: #ff4d00;
+    --accent-hover: #e64500;
+    --text: #ffffff;
+    --gray: #888888;
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+
+/* Header & Logo */
+.main-header {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 25px 0;
+    border-bottom: 2px solid var(--accent);
+    position: sticky; top: 0; z-index: 1000;
+}
+.header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.logo { font-size: 35px; font-weight: 900; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; }
+
+/* Navigation */
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-link { color: #fff; text-decoration: none; font-weight: 700; transition: var(--transition); }
+.nav-link:hover { color: var(--accent); }
+.cart-trigger { background: var(--accent); padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: 900; }
+
+/* Hero Section */
+.hero {
+    height: 500px;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/static/hero.jpg');
+    background-size: cover; background-position: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.hero h1 { font-size: 80px; color: var(--accent); margin-bottom: 10px; }
+.hero p { font-size: 20px; color: var(--gray); }
+
+/* Filter Bar */
+.filter-bar { display: flex; justify-content: center; gap: 15px; padding: 40px 0; flex-wrap: wrap; }
+.filter-btn {
+    background: var(--card); color: #fff; border: 1px solid #333; padding: 12px 30px;
+    border-radius: 30px; cursor: pointer; transition: var(--transition); font-weight: 700;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-5px); }
+
+/* Products Grid */
+.products-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 35px; max-width: 1200px; margin: 0 auto; padding: 40px 20px;
+}
+.product-card {
+    background: var(--card); border-radius: 20px; padding: 20px; border: 1px solid #222;
+    transition: var(--transition); position: relative; overflow: hidden;
+}
+.product-card:hover { border-color: var(--accent); transform: scale(1.05); box-shadow: 0 15px 40px rgba(255, 77, 0, 0.2); }
+.product-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; }
+.product-card h3 { font-size: 20px; margin-bottom: 10px; }
+.product-card .price { color: var(--accent); font-size: 22px; font-weight: 900; margin-bottom: 20px; }
+.add-btn {
+    width: 100%; background: #222; color: #fff; border: none; padding: 15px;
+    border-radius: 12px; cursor: pointer; font-weight: 700; transition: 0.3s;
+}
+.add-btn:hover { background: var(--accent); }
+
+/* Sidebar Cart */
+.cart-sidebar {
+    position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
+    background: #000; z-index: 2000; transition: 0.5s; padding: 40px;
+    border-left: 3px solid var(--accent); box-shadow: -10px 0 50px rgba(0,0,0,0.9);
+}
+.cart-sidebar.open { right: 0; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #222; }
+.total-area { margin-top: 40px; border-top: 2px solid var(--accent); padding-top: 20px; }
+.total-area h4 { font-size: 25px; margin-bottom: 20px; }
+.checkout-btn { background: var(--accent); width: 100%; padding: 18px; border: none; border-radius: 10px; color: #fff; font-weight: 900; cursor: pointer; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.product-card { animation: fadeIn 0.6s ease-out forwards; }

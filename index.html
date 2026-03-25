@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>City Rox | The Ultimate Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">City Rox</div>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">الرئيسية</a>
+                <div class="cart-trigger" onclick="toggleCart()">السلة (<span id="cart-count">0</span>)</div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>CITY ROX</h1>
+        <p>عالمك الجديد للتسوق الاحترافي</p>
+    </section>
+
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterProducts('all')">الكل</button>
+        <button class="filter-btn" onclick="filterProducts('perfumes')">العطور</button>
+        <button class="filter-btn" onclick="filterProducts('tech')">التقنية</button>
+        <button class="filter-btn" onclick="filterProducts('gaming')">الجيمنج</button>
+    </div>
+
+    <main class="products-grid" id="products-container"></main>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <h2>مشترياتك</h2>
+        <div id="cart-items"></div>
+        <div class="total-area">
+            <h4>المجموع: <span id="total-price">0</span> دج</h4>
+            <button class="checkout-btn" onclick="goToCheckout()">إتمام الطلب الآن</button>
+            <button onclick="toggleCart()" style="width:100%; background:none; color:#fff; border:1px solid #333; padding:10px; margin-top:10px; cursor:pointer;">إغلاق</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

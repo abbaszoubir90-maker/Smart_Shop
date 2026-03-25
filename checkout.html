@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الطلب | Smart Shop 🛒</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Smart Shop 💀🔥</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="checkout.html" class="cart-btn">🛒 السلة (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="checkout-container">
+        <h2 style="color: #00ffcc; margin-top: 30px;">قائمة مشترياتك 📋</h2>
+        
+        <div id="cart-items-list" class="cart-summary">
+            <p>السلة فارغة حالياً...</p>
+        </div>
+
+        <div class="total-section">
+            <h3>المجموع الإجمالي: <span id="total-price" style="color: #ffcc00;">0</span> دج</h3>
+        </div>
+
+        <hr style="border: 1px solid #333; margin: 30px 0;">
+
+        <div class="order-form">
+            <h3 style="color: #00ffcc;">أكمل بياناتك لتأكيد الطلب 🚀</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>الاسم الكامل:</label>
+                    <input type="text" id="cust-name" placeholder="مثلاً: طاهر رضوان" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف:</label>
+                    <input type="tel" id="cust-phone" placeholder="0XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>العنوان:</label>
+                    <input type="text" id="cust-address" placeholder="الولاية، البلدية..." required>
+                </div>
+                <button type="submit" class="confirm-btn">تأكيد الشراء الآن 🔥</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // كود خاص بصفحة السلة لعرض المنتجات
+        function displayCart() {
+            const listContainer = document.getElementById('cart-items-list');
+            const totalElement = document.getElementById('total-price');
+            let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+            
+            if (cart.length === 0) {
+                listContainer.innerHTML = "<p>السلة فارغة!</p>";
+                return;
+            }
+
+            listContainer.innerHTML = "";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                listContainer.innerHTML += `
+                    <div style="background: #333; margin: 10px 0; padding: 15px; border-radius: 10px; display: flex; justify-content: space-between;">
+                        <span>${item.name}</span>
+                        <span style="color: #00ffcc;">${item.price} دج</span>
+                    </div>
+                `;
+            });
+
+            totalElement.innerText = total;
+        }
+
+        // تشغيل العرض عند فتح الصفحة
+        displayCart();
+
+        // منع إرسال الفورم (للتجربة حالياً)
+        document.getElementById('checkout-form').onsubmit = (e) => {
+            e.preventDefault();
+            alert("تم استلام طلبك يا بطل! 💀🔥 سنتصل بك قريباً.");
+            localStorage.removeItem('myCart'); // تفريغ السلة بعد الطلب
+            window.location.href = "index.html"; // العودة للرئيسية
+        };
+    </script>
+</body>
+</html>
